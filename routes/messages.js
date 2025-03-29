@@ -55,4 +55,14 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Delete all messages
+router.delete('/', async (req, res) => {
+  try {
+    await Message.deleteMany({});
+    res.json({ message: 'All messages deleted' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;
